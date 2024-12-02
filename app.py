@@ -16,7 +16,9 @@ def index():
             formatted_duration, total_duration, id, title, original_duration, flg = get_playlist_duration(url, speed, si, ei)
             if flg:
                 si = 1
-        elif "watch?v" in url or "youtu.be/" in url:
+        elif "watch?v" in url:
+            formatted_duration, total_duration, id, title, original_duration = get_video_duration(url, speed)
+        elif"youtu.be/" in url:
             formatted_duration, total_duration, id, title, original_duration = get_video_duration(url, speed)
         else:
             formatted_duration = "Invalid URL"
