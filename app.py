@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request
+from flask_cors import CORS
 from datetime import timedelta
 from get_durations import get_video_duration, get_playlist_duration, calculate_pomodoro_sessions
 import re
 
 app = Flask(__name__)
+CORS(app)
 
 def is_valid_youtube_url(url):
     youtube_pattern = r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/.+'
