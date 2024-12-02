@@ -7,10 +7,6 @@ import re
 app = Flask(__name__)
 CORS(app)
 
-def is_valid_youtube_url(url):
-    youtube_pattern = r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/.+'
-    return re.match(youtube_pattern, url) is not None
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -18,8 +14,6 @@ def index():
         speed = float(request.form["speed"])
         si = ei = original_duration = None
         
-        if not is_valid_youtube_url(url):
-            return render_template("index.html", duration="Invalid URL", pomodoro_sessions=None, pomodoro_time=None, total_pomodoro_time=None)
         print(url)
         if "playlist?list" in url:
             si = int(request.form["start_index"])
