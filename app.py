@@ -31,7 +31,7 @@ def index():
         else:
             pomodoro_sessions = pomodoro_time = total_pomodoro_time = id = title = None
         
-        print(si)
+        # print(si)
 
         return render_template("index.html", duration=formatted_duration, pomodoro_sessions=pomodoro_sessions, pomodoro_time=pomodoro_time, total_pomodoro_time=total_pomodoro_time,id=id,title=title,start_index=si,end_index=ei, original_duration=original_duration)
 
