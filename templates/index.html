@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video/Playlist Duration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function validateForm(event) {
+            const startIndex = document.getElementById("start_index").value;
+            const endIndex = document.getElementById("end_index").value;
+
+            if (parseInt(startIndex) > parseInt(endIndex)) {
+                alert("Start Index cannot be larger than End Index.");
+                event.preventDefault(); // Prevent form submission
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>YouTube Video/Playlist Duration Estimator</h1>
+        <form action="/" method="post" onsubmit="validateForm">
+            <label for="url">Enter Video/Playlist URL:</label>
+            <input type="text" id="url" name="url" placeholder="Enter YouTube URL" required>
+
+            <label for="speed">Playback Speed:</label>
+            <input type="number" id="speed" name="speed" step="0.0001" value="1" required>
+
+            <div class="playlist-options">
+                <label for="start_index">Start Index (For Playlist):</label>
+                <input type="number" id="start_index" name="start_index" min="1" max="5000" value="1">
+
+                <label for="end_index">End Index (For Playlist):</label>
+                <input type="number" id="end_index" name="end_index" min="1" max="5000" value="5000">
+            </div>
+
+            <button type="submit">Calculate Duration</button>
+        </form>
+
+        {% if duration %}
+        <div class="result">
+            <p><b>Title: {{ title }}</b></p>
+            <p>ID: {{ id }}</p>
+            <p>Original Duration: {{original_duration}}</p>
+            <p>Calculated Duration: {{ duration }}</p>
+
+            {% if start_index and end_index %}
+            <p>Start Index: {{ start_index }}</p>
+            <p>End Index: {{ end_index }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Pomodoro Section -->
+        <div class="pomodoro">
+            <h2>Pomodoro Technique</h2>
+            <p><b>Pomodoro is a technique that helps to concentrate in your studies better. The technique states that
+                    after every 25 minutes of a studying session, you should take a break of 5 minutes to freshen up a
+                    little bit and drink water.</b></p>
+            <p>Session length: 25 mins study + 5 mins break</p>
+
+            {% if duration %}
+            <div class="pomodoro-result">
+                <p>Video/Playlist Duration: {{ duration }}</p>
+                <p>Estimated Pomodoro Sessions: {{ pomodoro_sessions }} sessions</p>
+                <p>Time Remaining: {{ pomodoro_time }}</p>
+                <p><b>This technique itself is very good but here I have made a slight modification that suits me the
+                        best. The modification is that after every 4 pomodoro sessions, you should take a break of 1 hr
+                        to allow yourself to relieve for a longer duration of time and spend some quality time.
+                        Basically, it's for your own health</b></p>
+                <p>Total Pomodoro Time: {{ total_pomodoro_time }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
