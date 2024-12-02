@@ -20,7 +20,7 @@ def index():
         
         if not is_valid_youtube_url(url):
             return render_template("index.html", duration="Invalid URL", pomodoro_sessions=None, pomodoro_time=None, total_pomodoro_time=None)
-
+        print(url)
         if "playlist?list" in url:
             si = int(request.form["start_index"])
             ei = int(request.form["end_index"])
