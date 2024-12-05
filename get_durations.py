@@ -4,7 +4,7 @@ from datetime import timedelta
 def get_video_duration(url, speed=1):
     try:
         ydl_opts = {
-            # 'cookiefile': "cookies.txt",
+            'cookiefile': "cookies.txt",
             'quiet': True,
             'extract_flat': True,
         }
@@ -29,7 +29,7 @@ def get_video_duration(url, speed=1):
 def get_playlist_duration(playlist_url, speed=1, si=1, ei=5000):
     try:
         ydl_opts = {
-            # 'cookiefile': "cookies.txt",
+            'cookiefile': "cookies.txt",
             'quiet': True,
             'extract_flat': True,
         }
