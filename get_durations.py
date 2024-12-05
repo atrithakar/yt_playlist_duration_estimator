@@ -5,9 +5,10 @@ def get_video_duration(url, speed=1):
     try:
         ydl_opts = {
             'cookiefile': "cookies.txt",
-            'quiet': True,
+            'quiet': False,
+            'verbose': True,  # Add this line to enable verbose logging
             'extract_flat': True,
-        }
+}
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=False)
             # print(info_dict)
@@ -30,9 +31,10 @@ def get_playlist_duration(playlist_url, speed=1, si=1, ei=5000):
     try:
         ydl_opts = {
             'cookiefile': "cookies.txt",
-            'quiet': True,
+            'quiet': False,
+            'verbose': True,  # Add this line to enable verbose logging
             'extract_flat': True,
-        }
+}
         si_gt_tot_vids_flg = False
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             result = ydl.extract_info(playlist_url, download=False)
