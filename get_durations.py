@@ -8,6 +8,9 @@ def get_video_duration(url, speed=1):
             'quiet': False,
             'verbose': True,
             'extract_flat': True,
+            'http_headers': {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36'
+    }
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=False)
@@ -33,6 +36,9 @@ def get_playlist_duration(playlist_url, speed=1, si=1, ei=5000):
             'quiet': False,
             'verbose': True,
             'extract_flat': True,
+            'http_headers': {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36'
+    }
         }
         si_gt_tot_vids_flg = False
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
