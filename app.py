@@ -13,7 +13,7 @@ def index():
         speed = float(request.form["speed"])
         si = ei = original_duration = None
         
-        print(url)
+        # print(url)
         if "playlist?list" in url:
             si = int(request.form["start_index"])
             ei = int(request.form["end_index"])
