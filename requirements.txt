@@ -1,6 +1,5 @@
 beautifulsoup4==4.12.3
 blinker==1.9.0
-bs4==0.0.2
 certifi==2024.8.30
 charset-normalizer==3.4.0
 click==8.1.7
@@ -12,11 +11,10 @@ Flask-Cors==5.0.0
 idna==3.10
 itsdangerous==2.2.0
 Jinja2==3.1.4
-limits==3.14.1
+limits==1.6
 MarkupSafe==3.0.2
 packaging==24.2
 pytube==15.0.0
-ratelimiter==1.2.0.post0
 requests==2.32.3
 soupsieve==2.6
 typing_extensions==4.12.2
