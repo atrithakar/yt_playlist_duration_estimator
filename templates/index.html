@@ -21,7 +21,7 @@
 
 <body>
     <div class="container">
-        <h1>YouTube Video/Playlist Duration Estimator</h1>
+        <h1>YouTube Playlist Duration Estimator</h1>
         <form action="/" method="post" onsubmit="validateForm">
             <label for="url">Enter Video/Playlist URL:</label>
             <input type="text" id="url" name="url" placeholder="Enter YouTube URL" required>
@@ -30,10 +30,10 @@
             <input type="number" id="speed" name="speed" step="0.0001" value="1" required>
 
             <div class="playlist-options">
-                <label for="start_index">Start Index (For Playlist):</label>
+                <label for="start_index">Starting Index Of The Playlist:</label>
                 <input type="number" id="start_index" name="start_index" min="1" max="5000" value="1">
 
-                <label for="end_index">End Index (For Playlist):</label>
+                <label for="end_index">Ending Index Of The Playlist:</label>
                 <input type="number" id="end_index" name="end_index" min="1" max="5000" value="5000">
             </div>
 
@@ -48,9 +48,13 @@
             <p>Calculated Duration: {{ duration }}</p>
 
             {% if start_index and end_index %}
-            <p>Start Index: {{ start_index }}</p>
-            <p>End Index: {{ end_index }}</p>
+            <p>Starting Index: {{ start_index }}</p>
+            <p>Ending Index: {{ end_index }}</p>
             {% endif %}
+            <p>In case of Playback Speed > 2, use this technique: $('video').playbackRate = 2.5 (or any other value)</p>
+            <p>Steps: Right Click -> Inspect Element -> Console -> Paste the above code -> Press Enter</p>
+            <p><b>Note: After every ad, you'll need to do this process</b></p>
+            <p>Works in: All chromium based browsers and firefox</p>
         </div>
         {% endif %}
 
@@ -64,7 +68,7 @@
 
             {% if duration %}
             <div class="pomodoro-result">
-                <p>Video/Playlist Duration: {{ duration }}</p>
+                <p>Playlist Duration: {{ duration }}</p>
                 <p>Estimated Pomodoro Sessions: {{ pomodoro_sessions }} sessions</p>
                 <p>Time Remaining: {{ pomodoro_time }}</p>
                 <p><b>This technique itself is very good but here I have made a slight modification that suits me the
