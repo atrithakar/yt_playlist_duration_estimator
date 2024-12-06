@@ -1,12 +1,6 @@
 import yt_dlp
 from datetime import timedelta
-from limits import RateLimitExceeded
-from limits import Limiter
 
-# Create a rate limiter that allows 10 calls per second
-limiter = Limiter(key_func=lambda: "global")  # Use a global key for simplicity
-
-@limiter.limit("10/second")
 def get_video_duration(url, speed=1):
     try:
         ydl_opts = {
@@ -28,13 +22,10 @@ def get_video_duration(url, speed=1):
                 return formatted_duration, duration, id, title, original_duration
             else:
                 return "Duration not available.", None, None, None, None
-    except RateLimitExceeded:
-        return "Rate limit exceeded. Please try again later.", None, None, None, None
     except Exception as e:
-        print(f"Error fetching video duration: {e}")
-        return "Invalid Video Link", None, None, None, None
+        return f"Invalid Video Link", None, None, None, None
 
-@limiter.limit("10/second")
+
 def get_playlist_duration(playlist_url, speed=1, si=1, ei=5000):
     try:
         ydl_opts = {
@@ -61,11 +52,8 @@ def get_playlist_duration(playlist_url, speed=1, si=1, ei=5000):
             total_duration = total_duration / speed
             formatted_duration = str(timedelta(seconds=int(total_duration)))
             return formatted_duration, total_duration, id, title, original_duration, si_gt_tot_vids_flg
-    except RateLimitExceeded:
-        return "Rate limit exceeded. Please try again later.", None, None, None, None, None
     except Exception as e:
-        print(f"Error fetching playlist duration: {e}")
-        return "Invalid Playlist Link", None, None, None, None, None
+        return f"Invalid Playlist Link", None, None, None, None, None
 
 
 def calculate_pomodoro_sessions(duration_seconds):
