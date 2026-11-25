@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ypde-dep
+  namespace: ypde
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ypde
+  template:
+    metadata:
+      labels:
+        app: ypde
+    spec:
+      containers:
+        - name: ypde
+          image: atrithakar/ypde:1.0
+          ports:
+            - containerPort: 8000
