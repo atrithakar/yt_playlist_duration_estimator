@@ -1,0 +1,7 @@
+.git
+__pycache__
+*.pyc
+.venv
+compose.yaml
+Dockerfile
+vercel.json
